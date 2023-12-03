@@ -1,8 +1,7 @@
-word = "holberton"
-word_first_3, *middle_word, word_last_2 = word
-word_first_3 = "".join(word_first_3)
-word_last_2 = "".join(word_last_2)
-middle_word = "".join(middle_word)
-print("word_first_3:", word_first_3)
-print("middle_word:", middle_word)
-print("word_last_2:", word_last_2)
+word = "Holberton"
+word_first_3 = "hol"
+word_last_2 = "on"
+middle_word = "bert"
+print("First 3 letters: {}".format(word_first_3))
+print("Last 2 letters: {}".format(word_last_2))
+print("Middle word: {}".format(middle_word))
