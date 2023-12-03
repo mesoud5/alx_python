@@ -1,8 +1,9 @@
-Word = "Holberton"
-Word_first_3 = "hol" 
-Word_last_2 = "hol"
-Middle_word = "hol"
+word = "Holberton"
 
-print("First 3 letters: {}".format(Word_first_3))
-print("Last 2 letters: {}".format(Word_last_2))
-print("Middle word: {}".format(Middle_word))
+# Your code starts here
+word_first_3, word_last_2, middle_word = word[:3], word[-2:], word[1:-1]
+# Your code ends here
+print("First 3 letters:", word_first_3)
+print("Last 2 letters:", word_last_2)
+print("Middle word:", middle_word)
+
