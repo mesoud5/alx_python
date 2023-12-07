@@ -1,13 +1,8 @@
 def pow(a, b):
     return a ** b
-
-result = pow(2, 2)
-print(result)
-result = pow(98, 2)
-print(result)
-result = pow(98, 0)
-print(result)
-result = pow(100, -2)
-print(result)
-result = pow(-4, 5)
-print(result)
+if __name__ == "__main__":
+    print(pow(2, 2))
+    print(pow(98, 2))
+    print(pow(98, 0))
+    print(pow(100, -2))
+    print(pow(-4, 5))
