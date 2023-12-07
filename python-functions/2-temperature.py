@@ -1,6 +1,6 @@
 def convert_to_celsius(fahrenheit):
     celsius = (fahrenheit -32) *5/9
-    return round(celsius)
+    return round(celsius, 2)
 if __name__ == "__main__":
     print(convert_to_celsius(100))
     print(convert_to_celsius(-40))
