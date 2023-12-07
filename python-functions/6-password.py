@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 def validate_password(password):
+    __name__ == "__main__"
     # Check length
     if len(password) < 8:
         return False
