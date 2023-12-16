@@ -1,13 +1,15 @@
 def safe_print_division(a, b):
-     result = None
+    try:
+        result = a / b
+    except ZeroDivisionError:
+        result = None
+    finally:
+        print("Inside result: {}".format(result))
+        return result
 
-     try:
-           result = a / b
-     except ZeroDivisionError:
-           print("Division by zero is not allowed.")
-     finally:
-           print("Inside Finally:")
-           print("{}".format(result))
-     
-safe_print_division(10, 2)
-    
+
+if __name__ == "__main__":
+    a = 12
+    b = 2
+    result = safe_print_division(a, b)
+    print("{:d} / {:d} = {}".format(a, b, result))
