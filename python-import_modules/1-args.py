@@ -1,21 +1,20 @@
-import sys
+#!/usr/bin/env python3
+from sys import argv
 
 def print_arguments():
-    # Get the total number of arguments
-    num_arguments = len(sys.argv) - 1  # The first argument is the script name
+    num_arguments = len(argv) - 1
 
-    # Get the list of arguments
-    arguments_list = sys.argv[1:]
+    # Print the number of arguments
+    print(f"{num_arguments} argument{'s' if num_arguments != 1 else ''}:", end='')
 
-    # Print the results
-    print(f"{num_arguments} argument{'' if num_arguments == 1 else 's'}:")
-    for i, arg in enumerate(arguments_list, start=1):
-        print(f"{i}: {arg}")
-    
-    # Calculate the length of the first argument
-    first_arg_length = len(arguments_list[0]) if num_arguments >= 1 else 0
+    if num_arguments == 0:
+        print('.')
+    else:
+        print()
 
-    print(f"\n({first_arg_length} )")
+        # Print each argument
+        for i, arg in enumerate(argv[1:], start=1):
+            print(f"{i}: {arg}")
 
 if __name__ == "__main__":
     print_arguments()
