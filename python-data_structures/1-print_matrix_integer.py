@@ -1,4 +1,5 @@
 def print_matrix_integer(matrix=[[]]):
+    #print("Matrix Dimensions:", len(matrix), "x", len(matrix[0]))
     for i in range(len(matrix)):
         for j in range(len(matrix[i])):
             if j < len(matrix[i]) - 1:
@@ -6,7 +7,6 @@ def print_matrix_integer(matrix=[[]]):
             else:
                 print("{:d}".format(matrix[i][j]), end="")
         
-        # Check if it's not the last row to avoid an extra newline
         if i < len(matrix) - 1:
             print("")
 
@@ -18,3 +18,4 @@ matrix_example = [
 ]
 
 print_matrix_integer(matrix_example)
+
