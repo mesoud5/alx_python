@@ -57,3 +57,17 @@ class Square:
 
         """
         return self.__size**2
+# Creating an instance of the Square class
+my_square = Square()
+
+# Using the getter method to retrieve the initial size
+print(my_square.size)  # Output: 0
+
+# Using the setter method to modify the size
+my_square.size = 89
+
+# Using the getter method again to retrieve the modified size
+print(my_square.size)  # Output: 89
+
+# Calculating and printing the area using the area method
+print(my_square.area())  # Output: 7921
