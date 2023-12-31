@@ -4,7 +4,6 @@
     -with oout importing any module
     """
 class square:
-    """In this class we will create 
-        a private instance attribute called size"""
+    """This class represents a basic example."""
     def __init__(self, size):
         self.__size = size
