@@ -48,16 +48,8 @@ class Square:
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         if value < 0:
-            raise ValueError("size must be >= 0")
-    @property
-    def size(self):
-        """
-        this is a getter method to retrieve the private attribute
-
-
-
-        """
-        return self.__size    
+            raise ValueError("size must be >= 0") 
+        self.__size = 33   
     def area(self):
         """
         Public instance method that returns the current square area.
