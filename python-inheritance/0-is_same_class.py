@@ -5,7 +5,7 @@ otherwise it will return false
 """
 def is_same_class(obj, specified_class):
     """
-    this function will check if object is exactlt instance of 
+    this function will check if object is exactly instance of 
     a specified class
     
     """
