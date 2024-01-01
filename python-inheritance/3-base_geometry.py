@@ -1,9 +1,9 @@
 """
-empty basegeometry
+This module contains the definition of the BaseGeometry class.
 """
-class basegeometry:
+
+class BaseGeometry:
     """
-         empty class BaseGeometry.
-         with out mporting any module
+    This is an empty class that serves as a base for geometry-related classes.
     """
     pass
