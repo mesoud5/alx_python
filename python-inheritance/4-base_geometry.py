@@ -10,4 +10,4 @@ class BaseGeometry:
         """
         This is a method that raises an exception
         """
-        raise BaseGeometry("area() is not implemented")
+        raise Exception("area() is not implemented")
