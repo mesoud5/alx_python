@@ -44,6 +44,7 @@ class Rectangle(BaseGeometry):
 class square(Rectangle):
         """
         this class is inherited from the class rectangle and it have init method
+        
         """
         def __init__(self, size):
             self.__size = size
