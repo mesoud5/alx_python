@@ -20,6 +20,9 @@ class BaseGeometry:
 
 
 class Rectangle(BaseGeometry):
+    """
+    in this class there are four methods go understand them
+    """
     def __init__(self, width, height):
         # Use self.__width and self.__height instead of __width and __height
         self.__width = width
