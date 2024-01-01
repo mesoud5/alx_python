@@ -1,7 +1,7 @@
 """
 empty basegeometry
 """
-class basegeometry():
+class basegeometry:
     """
          empty class BaseGeometry.
          with out mporting any module
