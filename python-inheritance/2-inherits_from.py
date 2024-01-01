@@ -1,6 +1,6 @@
 """
 in this module we will Write a function that returns True if the object is an instance of a class that inherited (directly or indirectly) 
-from the specified class ; otherwise False.
+from the specified class otherwise False.
 
 """
 def inheritance_from(obj, a_class):
@@ -13,5 +13,5 @@ def inheritance_from(obj, a_class):
     for base_class in type(obj).__base__:
         if issubclass(base_class, a_class):
             return True
-    else:
-        return False
+    
+    return False
