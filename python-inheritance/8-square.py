@@ -43,19 +43,13 @@ class Rectangle(BaseGeometry):
         return f"[Rectangle] {self.__width}/{self.__height}" 
 class square(Rectangle):
     """
-        this class is inherited from the class rectangle and it have init method
-        why is this checker saying class not documented 
-        here it's documeneted
+    this class is inherited from the class rectangle and it have init method
+    why is this checker saying class not documented 
+    here it's documeneted
     """
     def __init__(self, size):
             self.__size = size
-            self.integer_validater("size", self.__size)
-    def integer_validator(self, name, value):
-        # Validate that value is a positive integer
-            if not isinstance(value, int):
-                raise TypeError(f"{name} must be an integer")
-            if value <= 0:
-                raise ValueError(f"{name} must be greater than 0")
+            self.integer_validator("size", self.__size)
     def area(self):
             return self.__size
         
