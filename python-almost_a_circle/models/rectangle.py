@@ -18,6 +18,11 @@ class Rectangle(Base):
     then as ai said earlier we will override it giving it a new 
     private instance attributes
     """
+
+    def __str__(self):
+        """String representation of Rectangle object"""
+        return f"Rectangle({self.width}, {self.height}) at ({self.x}, {self.y})"
+
     def __init__(self, width, height, x=0, y=0, id=None):
         """
         This is a constructer method
