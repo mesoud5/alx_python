@@ -7,6 +7,9 @@ base class and in this class we will have a constructer method
        private instance attributes
 """
 from base import Base
+"""
+we are importing class base from module base
+"""
 class Rectangle(Base):
     """
     in this class we will have a constructer method 
