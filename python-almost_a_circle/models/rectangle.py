@@ -196,3 +196,6 @@ class Rectangle():
         in this method we will calculate the area of rectangle
         """
         return self.__width * self.__height
+    def display(self):
+        for _ in range(self.__width, self.__height):
+                print("#" * self.__width, self.__height)
