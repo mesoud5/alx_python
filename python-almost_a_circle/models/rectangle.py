@@ -49,16 +49,34 @@ class Rectangle(Base):
     @width.setter
     def width(self, width):
         """Setter method for width"""
+        if not isinstance(width, int):
+            raise TypeError(f"{width}must be an integer")
+        if width <= 0:
+            raise ValueError(f"{width} must be > 0")
         self.__width = width
+
     @height.setter
     def height(self, height):
         """Setter method for height"""
+        if not isinstance(height, int):
+            raise TypeError(f"{height} must be an integer")
+        if height <= 0:
+            raise ValueError(f"{height} must be > 0")   
         self.__height = height
+
     @x.setter
     def x(self, x):
         """Setter method for x"""
+        if x < 0:
+            raise ValueError(f"{x} must be >= 0")
         self.__x = x
+
     @y.setter
     def y(self, y):
         """Setter method for y"""
+        if y < 0:
+            raise ValueError(f"{y} must be >= 0")
         self.__y = y
+#object creation
+r = Rectangle(20, 5)
+print(r)
