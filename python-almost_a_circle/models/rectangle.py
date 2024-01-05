@@ -1,28 +1,21 @@
-"""
-in this module we will create a class which will inherit from 
-base class and in this class we will have a constructer method 
-    we have already inherited from base but now we will override it
-    but first we will call the super to initialize the base constructer
-    then as i said earlier we will override it giving it a new 
-       private instance attributes
-"""
-from .base import Base
-"""
-we are importing class base from module base
-"""
+#!/usr/bin/python3
+"""Module that defines the Rectangle class"""
+from models.base import Base
+
 class Rectangle(Base):
     """
-    in this class we will have a constructer method 
-    we have already inherited from base but now we will override it
-    but first we will call the super to initialize the base constructer
-    then as ai said earlier we will override it giving it a new 
-    private instance attributes
+    Class Rectangle inherits from Base
     """
+
     def __init__(self, width, height, x=0, y=0, id=None):
         """
-        This is a constructer method
+        Class constructor method
         """
+
+        # Call the super class with id
         super().__init__(id)
+
+        # Assign each argument to the right attribute
         self.__width = width
         self.__height = height
         self.__x = x
@@ -30,58 +23,34 @@ class Rectangle(Base):
 
     # Getter methods
     def get_width(self):
-        """
-        This is a getter method for private instanace attribute __width
-        In this methode we will retriev the value
-        """
+        """Getter method for width"""
         return self.__width
 
     def get_height(self):
-        """
-        This is a getter method for private instanace attribute __height
-        In this methode we will retriev the value
-        """
+        """Getter method for height"""
         return self.__height
 
     def get_x(self):
-        """
-        This is a getter method for private instanace attribute __x
-        In this methode we will retriev the value
-        """
+        """Getter method for x"""
         return self.__x
 
     def get_y(self):
-        """
-        This is a getter method for private instanace attribute __y
-        In this methode we will retriev the value
-        """
+        """Getter method for y"""
         return self.__y
 
     # Setter methods
-    def set_width(self, new_width):
-        """
-        This is a setter method for private instance attribute __width 
-        In this method we will modify the private instance attribute
-        """
-        self.__width = new_width
+    def set_width(self, width):
+        """Setter method for width"""
+        self.__width = width
 
-    def set_height(self, new_height):
-        """
-        This is a setter method for private instance attribute __height 
-        In this method we will modify the private instance attribute
-        """
-        self.__height = new_height
+    def set_height(self, height):
+        """Setter method for height"""
+        self.__height = height
 
-    def set_x(self, new_x):
-        """
-        This is a setter method for private instance attribute __x
-        In this method we will modify the private instance attribute
-        """
-        self.__x = new_x
+    def set_x(self, x):
+        """Setter method for x"""
+        self.__x = x
 
-    def set_y(self, new_y):
-        """
-        This is a setter method for private instance attribute __y
-        In this method we will modify the private instance attribute
-        """
-        self.__y = new_y
+    def set_y(self, y):
+        """Setter method for y"""
+        self.__y = y
