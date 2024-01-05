@@ -1,4 +1,5 @@
 class Rectangle():
+    
     """
     This class represents a rectangle.
 
