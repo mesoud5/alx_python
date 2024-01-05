@@ -7,7 +7,7 @@ class square(Rectangle):
     in this class we have inherited from class rectangle so 
     we have everything class rectangle have
     """
-    def __init__(self, id, x, y, size):
+    def __init__(self, size, x=0, y=0, id=None):
         """
         this is a constructer method
         """
