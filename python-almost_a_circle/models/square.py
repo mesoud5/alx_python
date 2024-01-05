@@ -1,12 +1,10 @@
 """
 in this module we will import from module rectangle
 """
+# models/square.py
 from models.rectangle import Rectangle
 
 class Square(Rectangle):
-    """
-    in this class we will inherit from class Rectangle
-    """
     def __init__(self, size, x=0, y=0, id=None):
         """
         Initializes a new Square instance.
@@ -26,5 +24,3 @@ class Square(Rectangle):
         Format: [Square] (<id>) <x>/<y> - <size>
         """
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
-
-   
