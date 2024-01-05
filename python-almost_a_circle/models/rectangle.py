@@ -6,7 +6,7 @@ base class and in this class we will have a constructer method
     then as ai said earlier we will override it giving it a new 
        private instance attributes
 """
-from .base import Base
+from models.base import Base
 """
 we are importing class base from module base
 """
