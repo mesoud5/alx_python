@@ -44,6 +44,7 @@ class Rectangle():
      self.__x = x
      self.__y = y
 
+    
 
     @property
     def width(self):
@@ -190,3 +191,5 @@ class Rectangle():
         """
         if value < 0:
             raise ValueError(f"{attribute_name} must be >= 0")
+    def area(self):
+        return self.__width * self.__height
