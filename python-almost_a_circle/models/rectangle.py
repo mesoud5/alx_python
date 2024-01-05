@@ -192,4 +192,7 @@ class Rectangle():
         if value < 0:
             raise ValueError(f"{attribute_name} must be >= 0")
     def area(self):
+        """
+        in this method we will calculate the area of rectangle
+        """
         return self.__width * self.__height
