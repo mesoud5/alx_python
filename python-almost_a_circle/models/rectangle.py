@@ -6,7 +6,7 @@ base class and in this class we will have a constructer method
     then as i said earlier we will override it giving it a new 
        private instance attributes
 """
-from .base import Base
+from models.base import Base
 """
 we are importing class base from module base
 """
@@ -64,7 +64,7 @@ class Rectangle(Base):
             raise TypeError(f"{new_height} must be an integer")
         if new_height <= 0:
             raise ValueError(f"{new_height} must be > 0")   
-        self.__height = height
+        self.__height = new_height
 
     @x.setter
     def x(self, new_x):
@@ -80,5 +80,31 @@ class Rectangle(Base):
             raise ValueError(f"{new_y} must be >= 0")
         self.__y = new_y
 #object creation
-r = Rectangle(20, 5)
+r = Rectangle(20, 5, 4, 7)
 print(r)
+
+
+
+if __name__ == "__main__":
+
+    try:
+        Rectangle(10, "2")
+    except Exception as e:
+        print("[{}] {}".format(e.__class__.__name__, e))
+
+    try:
+        r = Rectangle(10, 2)
+        r.width = -10
+    except Exception as e:
+        print("[{}] {}".format(e.__class__.__name__, e))
+
+    try:
+        r = Rectangle(10, 2)
+        r.x = {}
+    except Exception as e:
+        print("[{}] {}".format(e.__class__.__name__, e))
+
+    try:
+        Rectangle(10, 2, 3, -1)
+    except Exception as e:
+        print("[{}] {}".format(e.__class__.__name__, e))
