@@ -1,3 +1,9 @@
+"""
+in this module we will have a class base with 
+ - attribute
+ - method
+"""
+
 class Base:
     """
      Base class for managing id attribute in all other classes.
