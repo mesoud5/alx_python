@@ -17,24 +17,33 @@ class Rectangle():
     """
 
     def __init__(self, width, height, x=0, y=0):
-        """
-        Initializes a new Rectangle instance.
+     """
+    Initializes a new Rectangle instance.
 
-        Parameters:
-        - width (int): The width of the rectangle.
-        - height (int): The height of the rectangle.
-        - x (int, optional): The x-coordinate of the rectangle (default is 0).
-        - y (int, optional): The y-coordinate of the rectangle (default is 0).
-        """
-        self.integer("width", width)
-        self.integer("height", height)
-        self.integer("x", x)
-        self.integer("y", y)
-       
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+    Parameters:
+    - width (int): The width of the rectangle.
+    - height (int): The height of the rectangle.
+    - x (int, optional): The x-coordinate of the rectangle (default is 0).
+    - y (int, optional): The y-coordinate of the rectangle (default is 0).
+     """
+     self.integer("width", width)
+     self.integer("height", height)
+     self.integer("x", x)
+     self.integer("y", y)
+    
+     self.positive("width", width)
+     self.positive("height", height)
+     self.non_negative("x", x)
+     self.non_negative("y", y)
+    
+     if width <= 0:
+        raise ValueError("width must be > 0")
+    
+     self.__width = width
+     self.__height = height
+     self.__x = x
+     self.__y = y
+
 
     @property
     def width(self):
