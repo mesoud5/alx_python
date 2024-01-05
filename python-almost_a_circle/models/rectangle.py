@@ -1,5 +1,13 @@
+"""
+Module that defines the Rectangle class.
+
+This module provides a Rectangle class with attributes such as width, height, x, and y.
+It also includes methods to validate and set these attributes.
+"""
+
+
 class Rectangle():
-    
+
     """
     This class represents a rectangle.
 
