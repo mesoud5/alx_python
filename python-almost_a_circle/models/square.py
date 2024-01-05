@@ -1,19 +1,28 @@
 """
-in this module we will import from models,rectangle class rectangle
+in this module we will import from rectangle class Rectangle
 """
-from .rectangle import Rectangle
-class square(Rectangle):
+from models.rectangle import Rectangle
+
+class Square(Rectangle):
     """
-    in this class we have inherited from class rectangle so 
-    we have everything class rectangle have
+    in this class we will inherit from class Rectangle
     """
     def __init__(self, size, x=0, y=0, id=None):
         """
-        this is a constructer method
+        Initializes a new Square instance.
+
+        Parameters:
+        - size (int): The side length of the square.
+        - x (int, optional): The x-coordinate of the square (default is 0).
+        - y (int, optional): The y-coordinate of the square (default is 0).
+        - id (int, optional): The ID of the square (default is None).
         """
-        super().__init__(id, x, y, size, size)
+        super().__init__(size, size, x, y, id)
+
     def __str__(self):
         """
-        this is the str method
+        Returns a string representation of the Square.
+
+        Format: [Square] (<id>) <x>/<y> - <size>
         """
-        return f"[square] ({id(self)}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
