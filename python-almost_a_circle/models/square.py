@@ -1,7 +1,7 @@
 """
 in this module we will import from models,rectangle class rectangle
 """
-from models.rectangle import Rectangle
+from .rectangle import Rectangle
 class square(Rectangle):
     """
     in this class we have inherited from class rectangle so 
