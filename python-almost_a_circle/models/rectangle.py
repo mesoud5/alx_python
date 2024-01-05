@@ -49,36 +49,36 @@ class Rectangle(Base):
 
     # Setter methods
     @width.setter
-    def width(self, width):
+    def width(self, new_width):
         """Setter method for width"""
-        if not isinstance(width, int):
-            raise TypeError(f"{width}must be an integer")
-        if width <= 0:
-            raise ValueError(f"{width} must be > 0")
-        self.__width = width
+        if not isinstance(new_width, int):
+            raise TypeError(f"{new_width}must be an integer")
+        if new_width <= 0:
+            raise ValueError(f"{new_width} must be > 0")
+        self.__width = new_width
 
     @height.setter
-    def height(self, height):
+    def height(self, new_height):
         """Setter method for height"""
-        if not isinstance(height, int):
-            raise TypeError(f"{height} must be an integer")
-        if height <= 0:
-            raise ValueError(f"{height} must be > 0")   
+        if not isinstance(new_height, int):
+            raise TypeError(f"{new_height} must be an integer")
+        if new_height <= 0:
+            raise ValueError(f"{new_height} must be > 0")   
         self.__height = height
 
     @x.setter
-    def x(self, x):
+    def x(self, new_x):
         """Setter method for x"""
-        if x < 0:
-            raise ValueError(f"{x} must be >= 0")
-        self.__x = x
+        if new_x < 0:
+            raise ValueError(f"{new_x} must be >= 0")
+        self.__x = new_x
 
     @y.setter
-    def y(self, y):
+    def y(self, new_y):
         """Setter method for y"""
-        if y < 0:
-            raise ValueError(f"{y} must be >= 0")
-        self.__y = y
+        if new_y < 0:
+            raise ValueError(f"{new_y} must be >= 0")
+        self.__y = new_y
 #object creation
 r = Rectangle(20, 5)
 print(r)
