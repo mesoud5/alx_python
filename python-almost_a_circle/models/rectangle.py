@@ -200,4 +200,6 @@ class Rectangle():
         """
         in this method we will print the rectangle in character #
         """
-        print("#" * self.__width + "\n") * self.__height
+        for _ in range(self.__height):
+            print("#" * self.__width)
+
