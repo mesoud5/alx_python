@@ -53,8 +53,8 @@ class Rectangle():
         - TypeError: If new_width is not an integer.
         - ValueError: If new_width is not greater than 0.
         """
-        self.positive("width", new_width)
         self.integer("width", new_width)
+        self.positive("width", new_width)
         self.__width = new_width
 
     @property
@@ -105,6 +105,7 @@ class Rectangle():
         - TypeError: If new_x is not an integer.
         - ValueError: If new_x is not greater than or equal to 0.
         """
+        self.integer("x", new_x)
         self.non_negative("x", new_x)
         self.__x = new_x
 
@@ -130,6 +131,7 @@ class Rectangle():
         - TypeError: If new_y is not an integer.
         - ValueError: If new_y is not greater than or equal to 0.
         """
+        self.integer("y", new_y)
         self.non_negative("y", new_y)
         self.__y = new_y
 
