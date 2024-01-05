@@ -3,10 +3,10 @@ in this module we will create a class which will inherit from
 base class and in this class we will have a constructer method 
     we have already inherited from base but now we will override it
     but first we will call the super to initialize the base constructer
-    then as ai said earlier we will override it giving it a new 
+    then as i said earlier we will override it giving it a new 
        private instance attributes
 """
-from models.base import Base
+from .base import Base
 """
 we are importing class base from module base
 """
