@@ -4,7 +4,7 @@ Module that defines the Rectangle class.
 This module provides a Rectangle class with attributes such as width, height, x, and y.
 It also includes methods to validate and set these attributes.
 """
-from base import Base
+from .base import Base
 """
 here we have inherited class Base from base
 """
