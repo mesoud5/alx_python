@@ -212,7 +212,7 @@ class Rectangle():
         fixed_id = 1
         return f"[Rectangle] ({fixed_id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
       
         """
         Assigns arguments to attributes in a specific order.
@@ -220,11 +220,11 @@ class Rectangle():
         Parameters:
         - *args: No-keyword arguments in the order: id, width, height, x, y.
         """
-        def update(self, *args, **kwargs):
-            if args:
+       
+        if args:
                 attrs = ["id", "width", "height", "x", "y"]
                 for i, value in enumerate(args):
                     setattr(self, attrs[i], value)
-            elif kwargs:
+        elif kwargs:
                 for key, value in kwargs.items():
                     setattr(self, key, value)
