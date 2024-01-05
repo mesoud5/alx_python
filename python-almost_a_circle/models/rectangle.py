@@ -5,10 +5,13 @@ This module provides a Rectangle class with attributes such as width, height, x,
 It also includes methods to validate and set these attributes.
 """
 from base import Base
+"""
+here we have inherited class Base from base
+"""
 class Rectangle(Base):
     """
     This class represents a rectangle.
-
+    and its inherited from class base
     Attributes:
     - width (int): The width of the rectangle.
     - height (int): The height of the rectangle.
