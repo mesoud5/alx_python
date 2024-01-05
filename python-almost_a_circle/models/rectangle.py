@@ -16,7 +16,7 @@ class Rectangle(Base):
     we have already inherited from base but now we will override it
     but first we will call the super to initialize the base constructer
     then as ai said earlier we will override it giving it a new 
-       private instance attributes
+    private instance attributes
     """
     def __init__(self, width, height, x=0, y=0, id=None):
         """
@@ -27,51 +27,61 @@ class Rectangle(Base):
         self.__height = height
         self.__x = x
         self.__y = y
+
+    # Getter methods
     def get_width(self):
         """
         This is a getter method for private instanace attribute __width
         In this methode we will retriev the value
         """
         return self.__width
+
+    def get_height(self):
+        """
+        This is a getter method for private instanace attribute __height
+        In this methode we will retriev the value
+        """
+        return self.__height
+
+    def get_x(self):
+        """
+        This is a getter method for private instanace attribute __x
+        In this methode we will retriev the value
+        """
+        return self.__x
+
+    def get_y(self):
+        """
+        This is a getter method for private instanace attribute __y
+        In this methode we will retriev the value
+        """
+        return self.__y
+
+    # Setter methods
     def set_width(self, new_width):
         """
         This is a setter method for private instance attribute __width 
         In this method we will modify the private instance attribute
         """
         self.__width = new_width
-    def get_height(self):
-        """
-        This is a getter method for private instanace attribute __width
-        In this methode we will retriev the value
-        """
-        return self.__height
+
     def set_height(self, new_height):
         """
-        This is a setter method for private instance attribute __width 
+        This is a setter method for private instance attribute __height 
         In this method we will modify the private instance attribute
         """
         self.__height = new_height
-    def get_x(self):
-        """
-        This is a getter method for private instanace attribute __width
-        In this methode we will retriev the value
-        """
-        return self.__x
+
     def set_x(self, new_x):
         """
-        This is a setter method for private instance attribute __width 
+        This is a setter method for private instance attribute __x
         In this method we will modify the private instance attribute
         """
         self.__x = new_x
-    def get_y(self):
-        """
-        This is a getter method for private instanace attribute __width
-        In this methode we will retriev the value
-        """
-        return self.__y
+
     def set_y(self, new_y):
         """
-        This is a setter method for private instance attribute __width 
+        This is a setter method for private instance attribute __y
         In this method we will modify the private instance attribute
         """
         self.__y = new_y
