@@ -51,60 +51,31 @@ class Rectangle(Base):
     @width.setter
     def width(self, new_width):
         """Setter method for width"""
-        if not isinstance(new_width, int):
-            raise TypeError(f"{new_width}must be an integer")
-        if new_width <= 0:
-            raise ValueError(f"{new_width} must be > 0")
-        self.__width = new_width
-
+        self.positive("width", new_width)
+        self.integer("width", new_width)
     @height.setter
     def height(self, new_height):
         """Setter method for height"""
-        if not isinstance(new_height, int):
-            raise TypeError(f"{new_height} must be an integer")
-        if new_height <= 0:
-            raise ValueError(f"{new_height} must be > 0")   
-        self.__height = new_height
-
+        self.integer("height", new_height)
+        self.positive("height", new_height)
     @x.setter
     def x(self, new_x):
         """Setter method for x"""
-        if new_x < 0:
-            raise ValueError(f"{new_x} must be >= 0")
-        self.__x = new_x
-
+        self.non_negative("x", new_x)
     @y.setter
     def y(self, new_y):
         """Setter method for y"""
-        if new_y < 0:
-            raise ValueError(f"{new_y} must be >= 0")
-        self.__y = new_y
-#object creation
-r = Rectangle(20, 5, 4, 7)
-print(r)
+        self.non_negative("y", new_y)
 
 
-
-if __name__ == "__main__":
-
-    try:
-        Rectangle(10, "2")
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
-
-    try:
-        r = Rectangle(10, 2)
-        r.width = -10
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
-
-    try:
-        r = Rectangle(10, 2)
-        r.x = {}
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
-
-    try:
-        Rectangle(10, 2, 3, -1)
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
+    #methods
+    def integer(self, attribute_name, value):
+        if not isinstance(value, int):
+            raise TypeError(f"{attribute_name} must be an integer")
+    def positive(self, attribute_name, value):
+        if value <= 0:
+            raise ValueError(f"{attribute_name} must be >0 ")
+    def non_negative(self, attribute_name, value):
+        if value < 0:
+            raise ValueError(f"{attribute_name} must be >= 0")
+r = Rectangle(10, 9 ,8 ,7)
