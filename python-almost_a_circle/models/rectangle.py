@@ -197,5 +197,8 @@ class Rectangle():
         """
         return self.__width * self.__height
     def display(self):
+        """
+        in this method we will print the rectangle in character #
+        """
         for _ in range(self.__width, self.__height):
                 print("#" * self.__width, self.__height)
