@@ -5,9 +5,7 @@ This module provides a Rectangle class with attributes such as width, height, x,
 It also includes methods to validate and set these attributes.
 """
 
-
 class Rectangle():
-
     """
     This class represents a rectangle.
 
@@ -107,7 +105,6 @@ class Rectangle():
         - TypeError: If new_x is not an integer.
         - ValueError: If new_x is not greater than or equal to 0.
         """
-        self.integer("x", new_x)
         self.non_negative("x", new_x)
         self.__x = new_x
 
@@ -133,7 +130,6 @@ class Rectangle():
         - TypeError: If new_y is not an integer.
         - ValueError: If new_y is not greater than or equal to 0.
         """
-        self.integer("y", new_y)
         self.non_negative("y", new_y)
         self.__y = new_y
 
@@ -178,4 +174,3 @@ class Rectangle():
         """
         if value < 0:
             raise ValueError(f"{attribute_name} must be >= 0")
-
