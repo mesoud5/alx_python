@@ -1,5 +1,5 @@
 """
-in this module we will import from rectangle class Rectangle
+in this module we will import from module rectangle
 """
 from models.rectangle import Rectangle
 
@@ -26,3 +26,26 @@ class Square(Rectangle):
         Format: [Square] (<id>) <x>/<y> - <size>
         """
         return f"[Square] ({self.id}) {self.x}/{self.y} - {self.width}"
+
+    @property
+    def size(self):
+        """Getter method for the size attribute."""
+        return self.width
+
+    @size.setter
+    def size(self, new_size):
+        """Setter method for the size attribute."""
+        self.integer("size", new_size)
+        self.positive("size", new_size)
+        self.__width = new_size
+        self.__height = new_size
+
+    def integer(self, attribute_name, value):
+        """Validates that the given value is an integer."""
+        if not isinstance(value, int):
+            raise TypeError(f"{attribute_name} must be an integer")
+
+    def positive(self, attribute_name, value):
+        """Validates that the given value is positive (greater than 0)."""
+        if value <= 0:
+            raise ValueError(f"{attribute_name} must be > 0")
