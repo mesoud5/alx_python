@@ -5,6 +5,9 @@ in this module we will import from module rectangle
 from models.rectangle import Rectangle
 
 class Square(Rectangle):
+    """
+    in this class we will inherit from class Rectangle rectangle
+    """
     def __init__(self, size, x=0, y=0, id=None):
         """
         Initializes a new Square instance.
