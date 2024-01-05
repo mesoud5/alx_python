@@ -207,5 +207,6 @@ class Rectangle():
         """
         str method
         """
-        def __str__(self):
-            return f"[Rectangle] ({id(self)}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+    def __str__(self):
+        return f"[Rectangle] ({id(self)}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+
