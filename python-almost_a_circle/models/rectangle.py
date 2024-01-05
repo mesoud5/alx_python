@@ -1,56 +1,64 @@
-#!/usr/bin/python3
-"""Module that defines the Rectangle class"""
-from models.base import Base
-
+"""
+in this module we will create a class which will inherit from 
+base class and in this class we will have a constructer method 
+    we have already inherited from base but now we will override it
+    but first we will call the super to initialize the base constructer
+    then as i said earlier we will override it giving it a new 
+       private instance attributes
+"""
+from .base import Base
+"""
+we are importing class base from module base
+"""
 class Rectangle(Base):
     """
-    Class Rectangle inherits from Base
+    in this class we will have a constructer method 
+    we have already inherited from base but now we will override it
+    but first we will call the super to initialize the base constructer
+    then as ai said earlier we will override it giving it a new 
+    private instance attributes
     """
-
     def __init__(self, width, height, x=0, y=0, id=None):
         """
-        Class constructor method
+        This is a constructer method
         """
-
-        # Call the super class with id
         super().__init__(id)
-
-        # Assign each argument to the right attribute
         self.__width = width
         self.__height = height
         self.__x = x
         self.__y = y
 
-    # Getter methods
-    def get_width(self):
+    @property
+    def width(self):
         """Getter method for width"""
         return self.__width
-
-    def get_height(self):
+    @property
+    def height(self):
         """Getter method for height"""
         return self.__height
-
-    def get_x(self):
+    @property
+    def x(self):
         """Getter method for x"""
         return self.__x
-
-    def get_y(self):
+    @property
+    def y(self):
         """Getter method for y"""
         return self.__y
 
     # Setter methods
-    def set_width(self, width):
+    @width.setter
+    def width(self, width):
         """Setter method for width"""
         self.__width = width
-
-    def set_height(self, height):
+    @height.setter
+    def height(self, height):
         """Setter method for height"""
         self.__height = height
-
-    def set_x(self, x):
+    @x.setter
+    def x(self, x):
         """Setter method for x"""
         self.__x = x
-
-    def set_y(self, y):
+    @y.setter
+    def y(self, y):
         """Setter method for y"""
         self.__y = y
