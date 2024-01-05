@@ -26,6 +26,11 @@ class Rectangle():
         - x (int, optional): The x-coordinate of the rectangle (default is 0).
         - y (int, optional): The y-coordinate of the rectangle (default is 0).
         """
+        self.integer("width", width)
+        self.integer("height", height)
+        self.integer("x", x)
+        self.integer("y", y)
+       
         self.__width = width
         self.__height = height
         self.__x = x
