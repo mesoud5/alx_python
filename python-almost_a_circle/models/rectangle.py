@@ -221,10 +221,10 @@ class Rectangle():
         - *args: No-keyword arguments in the order: id, width, height, x, y.
         """
         def update(self, *args, **kwargs):
-           if args:
+            if args:
                 attrs = ["id", "width", "height", "x", "y"]
                 for i, value in enumerate(args):
                     setattr(self, attrs[i], value)
-           elif kwargs:
+            elif kwargs:
                 for key, value in kwargs.items():
                     setattr(self, key, value)
