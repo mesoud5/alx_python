@@ -14,7 +14,7 @@ if response.status_code == 200:
     if request_id:
         print(request_id)
     else:
-        print()
+        print(None)
 
 else:
     print(f"Failed to make the request. Status code: {response.status_code}")
