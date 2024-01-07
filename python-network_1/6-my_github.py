@@ -6,9 +6,12 @@ github_username = sys.argv[1]
 github_token = sys.argv[2]
 
 headers = {
-    'Autorization': f"{github_username}:{github_token}",
+    'Authorization': f"{github_username}:{github_token}",
     'Accept': 'application/vnd.github.v3+json'
 }
 response = requests.get(url, headers=headers)
-user_data = response.json()
-print(f"{user_data['id']}")
+if response.status_code == 200:
+    user_data = response.json()
+    print(f"{user_data['id']}")
+else:
+    print(response.json())
