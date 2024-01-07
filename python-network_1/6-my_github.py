@@ -7,18 +7,14 @@ import sys
 import requests
 
 def get_github_user_id(username, token):
-    url = f"https://api.github.com/user"
-    headers = {
-        "Authorization": f"Basic {username}:{token}",
-    }
-
-    response = requests.get(url, headers=headers)
+    url = "https://api.github.com/user"
+    auth = (username, token)
+    response = requests.get(url, auth=auth)
 
     if response.status_code == 200:
         return response.json().get("id")
     else:
         return None
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
