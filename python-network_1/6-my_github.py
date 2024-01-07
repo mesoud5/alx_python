@@ -19,6 +19,7 @@ def get_github_user_id(username, token):
     else:
         return None
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: ./6-my_github.py <username> <token>")
