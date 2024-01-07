@@ -18,7 +18,7 @@ if response.status_code == 200:
             print(f"[{user_id}] {user_name}")
         else:
             print("No result") 
-    except requests.exceptions.JSONDecodeError:
+    except ValueError:
         print("Not a valid JSON")
 else:
     print(f"error, {response.status_code}")
