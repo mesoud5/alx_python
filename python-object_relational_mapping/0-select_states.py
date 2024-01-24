@@ -19,13 +19,6 @@ cursor = connection.cursor()
 use = "USE hbtn_0e_0_usa"
 cursor.execute(use)
 connection.commit()
-# Execute the DELETE statement with a WHERE clause
-delete_query = "DELETE FROM states WHERE id IN (%s, %s)"
-condition_value = (3, 4)
-cursor.execute(delete_query, condition_value)
-
-# Commit the changes
-connection.commit()
 # Select all states and display the results
 all_state = "SELECT id, name FROM states ORDER BY states.id"
 cursor.execute(all_state)
