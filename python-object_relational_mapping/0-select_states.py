@@ -1,3 +1,4 @@
+# IMPORTING MYSQLDB
 import MySQLdb
 host = "localhost"
 user = "root"
