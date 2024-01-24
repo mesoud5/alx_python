@@ -20,7 +20,7 @@ connection = MySQLdb.connect(
 cursor = connection.cursor()
 
 # Select all states and display the results
-all_state = "SELECT id, name FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC"
+all_state = "SELECT id, name FROM states WHERE name LIKE 'N%' COLLATE utf8_bin ORDER BY states.id ASC"
 cursor.execute(all_state)
 states = cursor.fetchall()
 
