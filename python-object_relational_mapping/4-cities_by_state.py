@@ -24,6 +24,7 @@ all_cities = "SELECT cities.id, cities.name, states.name FROM cities JOIN states
 cursor.execute(all_cities)
 cities = cursor.fetchall()
 
+
 for city in cities:
     print(city)
 
