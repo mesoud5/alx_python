@@ -19,10 +19,10 @@ if __name__ == "__main__":
     state = sys.argv[4]
 
     # Connect to MySQL server
-    db = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
+    connection = MySQLdb.connect(host="localhost", port=3306, user=username, passwd=password, db=database)
 
     # Create a MySQL cursor
-    cursor = db.cursor()
+    cursor = connection.cursor()
 
     # Execute SQL query
     cursor.execute(
@@ -48,4 +48,4 @@ if __name__ == "__main__":
 
     # Close cursor and database connection
     cursor.close()
-    db.close()
+    connection.close()
