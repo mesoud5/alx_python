@@ -21,7 +21,7 @@ cursor = connection.cursor()
 
 # Select all states and display the results
 all_state = "SELECT id, name FROM states WHERE name = %s COLLATE utf8mb4_bin ORDER BY states.id ASC"
-cursor.execute(all_state, (state_name))
+cursor.execute(all_state, (state_name,))
 states = cursor.fetchall()
 
 for state in states:
