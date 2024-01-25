@@ -20,7 +20,7 @@ connection = MySQLdb.connect(
 cursor = connection.cursor()
 
 # Select all states and display the results
-all_cities = "SELECT id, name FROM cities ORDER BY cities.id ASC"
+all_cities = "SELECT cities.id, cities.name, states.name FROM cities JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC"
 cursor.execute(all_cities)
 cities = cursor.fetchall()
 
