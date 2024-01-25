@@ -22,10 +22,10 @@ cursor = connection.cursor()
 # Select all states and display the results
 all_cities = "SELECT id, name FROM cities ORDER BY cities.id ASC"
 cursor.execute(all_cities)
-states = cursor.fetchall()
+cities = cursor.fetchall()
 
-for state in states:
-    print(state)
+for city in cities:
+    print(city)
 
 cursor.close()
 connection.close()
