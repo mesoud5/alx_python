@@ -19,7 +19,7 @@ state = session.query(State).first()
 if state:
     print(f"{state.id}: {state.name}")
 else:
-    print("nothing\n")
+    print("Nothing")
 
 
 
