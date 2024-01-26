@@ -1,6 +1,5 @@
-"""
-in this code we will use sql alcehmy
-"""
+"""This module defines a SQLAlchemy State class representing a 'states' table in the database."""
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String
@@ -27,7 +26,8 @@ class State(Base):
     __tablename__ = 'states'
     id = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     name =  Column(String(128), nullable=False)
-    Base.metadata.create_all(bind=database)
+# Create the 'states' table in the database
+Base.metadata.create_all(bind=database)
 # Creating a session
 #session = Session()
 
