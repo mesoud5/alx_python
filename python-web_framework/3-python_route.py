@@ -18,9 +18,9 @@ def c(text):
     formated_text = text.replace('_', ' ')
     return f'C {formated_text}'
 
-@app.route('/python/<text>')
-@app.route('/python')
-def python(text='is cool'):
+@app.route('/Python/<text>')
+@app.route('/Python')
+def Python(text='is cool'):
     formated_text = text.replace('_', ' ')
     return f'python {formated_text}'
 
