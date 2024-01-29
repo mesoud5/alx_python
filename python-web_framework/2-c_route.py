@@ -15,7 +15,8 @@ def two():
 
 @app.route('/c/<text>')
 def hbnb(text):
-    return f'C {text}'
+    formated_text = text.replace('_', ' ')
+    return f'C {formated_text}'
 
 
 if __name__ == "__main__":
