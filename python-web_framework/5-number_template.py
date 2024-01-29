@@ -34,7 +34,7 @@ def number(n):
 @app.route('/number_template/<n>', strict_slashes=False)
 def number_template(n):
     if n.isdigit():
-        return render_template('5-number.html', n=n)
+        return render_template('5-number.html', n=int(n))
     else:
         abort(404)
 
