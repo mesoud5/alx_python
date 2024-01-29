@@ -1,3 +1,6 @@
+"""
+this module is for flask project
+"""
 from flask import Flask
 
 app = Flask(__name__)
