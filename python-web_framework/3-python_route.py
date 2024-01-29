@@ -18,11 +18,12 @@ def c(text):
     formated_text = text.replace('_', ' ')
     return f'C {formated_text}'
 
-@app.route('/python')
-@app.route('/python/<text>')
-def Python(text='is cool'):
-    formated_text = text.replace('_', ' ')
-    return f'Python {formated_text}'
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python(text='is cool'):
+    formatted_text = text.replace('_', ' ')
+    return f'Python {formatted_text}'
+
 
 
 if __name__ == "__main__":
