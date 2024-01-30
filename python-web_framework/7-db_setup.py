@@ -24,7 +24,7 @@ print("MySQL URI:", "mysql://" + app.config['SQLALCHEMY_DATABASE_URI'])
 db = SQLAlchemy(app)
 
 ############################  TO DO 2 ##############################
-class user(db.Model):
+class User(db.Model):
     id = db.Column(Integer, primary_key=True)
     name = db.Column(String(265))
     email = db.Column(String(265), unique=True, nullable=False)
