@@ -54,13 +54,12 @@ def add_user():
              db.session.add(new_user)
              db.session.commit()
              flash("User added successfully!")
+             return redirect('/users')  # Redirect to the 'users' route after successful addition
+         
          except Exception as e:
             flash(f"Error: {str(e)}")
-             
-        
-     else:    
-        return render_template('add_user.html')
-
+            
+     return render_template('add_user.html')  # Make sure to include a return statement here
 
 @app.route('/users')
 def user():
@@ -70,4 +69,5 @@ def user():
 
 
 if __name__ == '__main__':
+    app.secret_key = 'supersecretkey'
     app.run(host='0.0.0.0', port=5000, debug=True)
