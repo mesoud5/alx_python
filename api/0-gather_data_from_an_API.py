@@ -1,39 +1,42 @@
 #!/usr/bin/python3
 
-
-import sys
 import requests
+import sys
 
-def get_TODOlist(employee_id):
-    endpoint = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+def get_todo_progress(employee_id):
+    # Define API endpoints
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
-    
-    response = requests.get(endpoint)
+    # Fetch user information
+    user_response = requests.get(user_url)
+    if user_response.status_code != 200:
+        print("Error fetching user information")
+        return
+    user_data = user_response.json()
+    employee_name = user_data['name']
 
-    if response.status_code == 200:
-        user_data = response.json()
-        return user_data.get("name"), user_data.get("todos")
-    else:
-        print("error: failed to make succesful request")
-        return None, None
+    # Fetch TODO list
+    todos_response = requests.get(todos_url)
+    if todos_response.status_code != 200:
+        print("Error fetching TODO list")
+        return
+    todos_data = todos_response.json()
+
+    # Calculate progress
+    total_tasks = len(todos_data)
+    done_tasks = sum(1 for todo in todos_data if todo['completed'])
+
+    # Print progress
+    print(f"Employee {employee_name} is done with tasks ({done_tasks}/{total_tasks}):")
+    for todo in todos_data:
+        if todo['completed']:
+            print(f"\t{todo['title']}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("below or above 2 argument including the script name")
+        print("Usage: python3 script.py <employee_id>")
         sys.exit(1)
 
     employee_id = int(sys.argv[1])
-
-    employee_name, todo_list = get_TODOlist(employee_id)
-
-    if employee_name and todo_list:
-        total_tasks = len(todo_list)
-        done_tasks = sum(1 for todo in todo_list if todo["completed"])
-        print(f"Employee {employee_name} is done with tasks({done_tasks}/{total_tasks})")
-
-        for todo in todo_list:
-            if todo["completed"]:
-                print(f"\t{todo['title']}")
-    else:
-        print("Error: No data retrieved from the url mesoud")
-    
+    get_todo_progress(employee_id)
