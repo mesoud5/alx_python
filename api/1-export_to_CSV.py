@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
+import csv
 import requests
 import sys
-import csv
+
 
 def export_to_csv(employee_id):
     # Define API endpoints
