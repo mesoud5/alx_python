@@ -5,7 +5,7 @@ import requests as r
 import sys
 
 if __name__ == "__main__":
-    user_id = sys.argv[1]
+    user_id = int(sys.argv[1])
     url = "https://jsonplaceholder.typicode.com/"
     usr = r.get(url + "users/{}".format(user_id)).json()
     username = usr.get("username")
