@@ -1,39 +1,18 @@
 #!/usr/bin/python3
-"""
-This script retrieves all tasks from all employees and exports the data in JSON format.
-"""
-
+"""Exports to-do list information of all employees to JSON format."""
 import json
 import requests
-import sys
 
 if __name__ == "__main__":
-    # API endpoint
-    url = "https://jsonplaceholder.typicode.com/todos"
+    url = "https://jsonplaceholder.typicode.com/"
+    users = requests.get(url + "users").json()
 
-    # Send GET request
-    response = requests.get(url)
-    todos = response.json()
-
-    # Dictionary to store tasks grouped by user ID
-    tasks_by_user = {}
-
-    # Group tasks by user ID
-    for todo in todos:
-        user_id = todo.get("userId")
-        task_info = {"username": todo.get("username"), "task": todo.get("title"), "completed": todo.get("completed")}
-        
-        if user_id in tasks_by_user:
-            tasks_by_user[user_id].append(task_info)
-        else:
-            tasks_by_user[user_id] = [task_info]
-
-    # Export tasks data to JSON files
-    for user_id, tasks in tasks_by_user.items():
-        filename = f"{user_id}.json"
-        with open(filename, "w") as f:
-            json.dump(tasks, f, indent=4)
-
-    # Export all tasks data to a single JSON file
-    with open("todo_all_employees.json", "w") as f:
-        json.dump(tasks_by_user, f, indent=4)
+    with open("todo_all_employees.json", "w") as jsonfile:
+        json.dump({
+            u.get("id"): [{
+                "task": t.get("title"),
+                "completed": t.get("completed"),
+                "username": u.get("username")
+            } for t in requests.get(url + "todos",
+                                    params={"userId": u.get("id")}).json()]
+            for u in users}, jsonfile)
