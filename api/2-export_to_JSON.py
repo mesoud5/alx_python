@@ -1,44 +1,33 @@
-#!/usr/bin/python3
-"""
-Exports to-do list information for a given employee ID to JSON format.
-
-This script takes an employee ID as a command-line argument and exports
-the corresponding user information and to-do list to a JSON file.
-"""
-
 import json
 import requests
-import sys
-
+from sys import argv
 
 if __name__ == "__main__":
-    # Get the employee ID from the command-line argument
-    user_id = sys.argv[1]
+    if len(argv) != 2:
+        print("Usage: {} <employee_id>".format(argv[0]))
+        exit()
 
-    # Base URL for the JSONPlaceholder API
-    url = "https://jsonplaceholder.typicode.com/"
+    employee_id = argv[1]
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employee_id)
 
-    # Fetch user information using the provided employee ID
-    user = requests.get(url + "users/{}".format(user_id)).json()
-    username = user.get("username")
+    response = requests.get(url)
+    todos = response.json()
 
-    # Fetch the to-do list for the employee using the provided employee ID
-    params = {"userId": user_id}
-    todos = requests.get(url + "todos", params).json()
+    user_info_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    user_info_response = requests.get(user_info_url)
+    user_info = user_info_response.json()
 
-    # Create a dictionary containing the user and to-do list information
-    data_to_export = {
-        user_id: [
-            {
-                "task": t.get("title"),
-                "completed": t.get("completed"),
-                "username": username
-            }
-            for t in todos
-        ]
-    }
+    employee_name = user_info['username']
+    tasks = []
 
-    # Write the data to a JSON file with the employee ID as the filename
-    with open("{}.json".format(user_id), "w") as jsonfile:
-        json.dump(data_to_export, jsonfile, indent=4)
+    for todo in todos:
+        task_info = {
+            "task": todo['title'],
+            "completed": todo['completed'],
+            "username": employee_name
+        }
+        tasks.append(task_info)
 
+    filename = "{}.json".format(employee_id)
+    with open(filename, 'w') as json_file:
+        json.dump({employee_id: tasks}, json_file)

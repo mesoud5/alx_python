@@ -1,46 +1,39 @@
 #!/usr/bin/python3
 """
-Exports to-do list information of all employees to JSON format.
-
-This script fetches the user information and to-do lists for all employees
-from the JSONPlaceholder API and exports the data to a JSON file.
+This script retrieves all tasks from all employees and exports the data in JSON format.
 """
 
 import json
 import requests
-
-
-def fetch_user_data():
-    """Fetch user information and to-do lists for all employees."""
-    # Base URL for the JSONPlaceholder API
-    url = "https://jsonplaceholder.typicode.com/"
-
-    # Fetch the list of all users (employees)
-    users = requests.get(url + "users").json()
-
-    # Create a dictionary containing to-do list information of all employees
-    data_to_export = {}
-    for user in users:
-        user_id = user["id"]
-        user_url = url + f"todos?userId={user_id}"
-        todo_list = requests.get(user_url).json()
-
-        data_to_export[user_id] = [
-            {
-                "task": todo.get("title"),
-                "completed": todo.get("completed"),
-                "username": user.get("username"),
-            }
-            for todo in todo_list
-        ]
-
-    return data_to_export
-
+import sys
 
 if __name__ == "__main__":
-    data_to_export = fetch_user_data()
+    # API endpoint
+    url = "https://jsonplaceholder.typicode.com/todos"
 
-    # Write the data to a JSON file
-    with open("todo_all_employees.json", "w") as jsonfile:
-        json.dump(data_to_export, jsonfile, indent=4)
+    # Send GET request
+    response = requests.get(url)
+    todos = response.json()
 
+    # Dictionary to store tasks grouped by user ID
+    tasks_by_user = {}
+
+    # Group tasks by user ID
+    for todo in todos:
+        user_id = todo.get("userId")
+        task_info = {"username": todo.get("username"), "task": todo.get("title"), "completed": todo.get("completed")}
+        
+        if user_id in tasks_by_user:
+            tasks_by_user[user_id].append(task_info)
+        else:
+            tasks_by_user[user_id] = [task_info]
+
+    # Export tasks data to JSON files
+    for user_id, tasks in tasks_by_user.items():
+        filename = f"{user_id}.json"
+        with open(filename, "w") as f:
+            json.dump(tasks, f, indent=4)
+
+    # Export all tasks data to a single JSON file
+    with open("todo_all_employees.json", "w") as f:
+        json.dump(tasks_by_user, f, indent=4)

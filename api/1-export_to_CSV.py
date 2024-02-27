@@ -1,35 +1,32 @@
-#!/usr/bin/python3
-"""Exports to-do list information for a given employee ID to CSV format."""
-
 import csv
 import requests
-import sys
-
+from sys import argv
 
 if __name__ == "__main__":
-    # Get the user ID from the command-line arguments provided to the script
-    user_id = sys.argv[1]
+    if len(argv) != 2:
+        print("Usage: {} <employee_id>".format(argv[0]))
+        exit()
 
-    # Define the base URL for the JSON API
-    url = "https://jsonplaceholder.typicode.com/"
+    employee_id = argv[1]
+    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employee_id)
 
-    # Fetch user information from the API and
-    #   convert the response to a JSON object
-    user = requests.get(url + "users/{}".format(user_id)).json()
+    response = requests.get(url)
+    todos = response.json()
 
-    # Extract the username from the user data
-    username = user.get("username")
+    user_info_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
+    user_info_response = requests.get(user_info_url)
+    user_info = user_info_response.json()
 
-    # Fetch the to-do list items associated with the
-    #   given user ID and convert the response to a JSON object
-    todos = requests.get(url + "todos", params={"userId": user_id}).json()
+    employee_name = user_info['username']
+    filename = "{}.csv".format(employee_id)
 
-    # Use list comprehension to iterate over the to-do list items
-    # Write each item's details (user ID, username, completion status,
-    #   and title) as a row in the CSV file
-    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        [writer.writerow(
-            [user_id, username, t.get("completed"), t.get("title")]
-         ) for t in todos]
+    with open(filename, 'w', newline='') as csvfile:
+        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
+        writer.writeheader()
+        for todo in todos:
+            writer.writerow({'USER_ID': employee_id,
+                             'USERNAME': employee_name,
+                             'TASK_COMPLETED_STATUS': str(todo['completed']),
+                             'TASK_TITLE': todo['title']})
