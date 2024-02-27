@@ -1,47 +1,53 @@
-#!/usr/bin/python3
-
-import sys
-import requests
 import csv
+import requests
+import sys
 
-def get_TODOlist(employee_id):
-    endpoint = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
-    
-    response = requests.get(endpoint)
+def get_todo_progress(employee_id):
+    # Define API endpoints
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
-    if response.status_code == 200:
-        return response.json()
-    else:
-        print("Error: Failed to make successful request")
-        return None
+    # Fetch user information
+    try:
+        user_response = requests.get(user_url)
+        user_response.raise_for_status()  # Raise exception for non-200 status codes
+        user_data = user_response.json()
+        user_id = user_data['id']
+        username = user_data['username']
+    except requests.RequestException as e:
+        print(f"Error fetching user information: {e}")
+        return
 
-def export_to_CSV(employee_id, employee_name, tasks):
-    filename = f"{employee_id}.csv"
-    with open(filename, mode='w', newline='') as csvfile:
-        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    # Fetch TODO list
+    try:
+        todos_response = requests.get(todos_url)
+        todos_response.raise_for_status()  # Raise exception for non-200 status codes
+        todos_data = todos_response.json()
+    except requests.RequestException as e:
+        print(f"Error fetching TODO list: {e}")
+        return
 
-        writer.writeheader()
-        for task in tasks:
-            writer.writerow({
-                'USER_ID': employee_id,
-                'USERNAME': employee_name,
-                'TASK_COMPLETED_STATUS': str(task['completed']),
-                'TASK_TITLE': task['title']
-            })
-    print(f"Data exported to {filename}")
+    # Write data to CSV file
+    csv_filename = f"{user_id}.csv"
+    with open(csv_filename, 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        for todo in todos_data:
+            csv_writer.writerow([user_id, username, todo["completed"], todo["title"]])
+
+    print(f"CSV file '{csv_filename}' has been created successfully.")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
-        print("Usage: python script_name.py employee_id")
+        print("Usage: python3 script.py <employee_id>")
         sys.exit(1)
 
-    employee_id = sys.argv[1]
+    try:
+        employee_id = int(sys.argv[1])
+        if employee_id <= 0:
+            raise ValueError("Employee ID must be a positive integer")
+    except ValueError:
+        print("Employee ID must be a positive integer")
+        sys.exit(1)
 
-    tasks = get_TODOlist(employee_id)
-
-    if tasks:
-        employee_name = tasks[0]['userId']
-        export_to_CSV(employee_id, employee_name, tasks)
-    else:
-        print("Error: No data retrieved from the URL")
+    get_todo_progress(employee_id)
