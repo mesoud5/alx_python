@@ -1,17 +1,40 @@
 #!/usr/bin/python3
-"""Script to export data in the CSV format"""
-import csv
-import requests as r
+
+import requests
 import sys
+import csv
 
-if __name__ == "__main__":
-    user_id = int(sys.argv[1])
-    url = "https://jsonplaceholder.typicode.com/"
-    usr = r.get(url + "users/{}".format(user_id)).json()
-    username = usr.get("username")
-    to_do = r.get(url + "todos", params={"userId": user_id}).json()
+def export_to_csv(employee_id):
+    # Define API endpoints
+    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
+    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
-    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
-        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        [writer.writerow([user_id, username, elm.get("completed"),
-                          elm.get("title")]) for elm in to_do]
+    # Fetch user information
+    user_response = requests.get(user_url)
+    if user_response.status_code != 200:
+        print("Error fetching user information")
+        return
+    user_data = user_response.json()
+    user_id = user_data['id']
+    username = user_data['username']
+
+    # Fetch TODO list
+    todos_response = requests.get(todos_url)
+    if todos_response.status_code != 200:
+        print("Error fetching TODO list")
+        return
+    todos_data = todos_response.json()
+
+    # Write data to CSV file
+    csv_filename = f"{user_id}.csv"
+    with open(csv_filename, 'w', newline='') as csvfile:
+        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for todo in todos_data:
+            writer.writerow({'USER_ID': user_id,
+                             'USERNAME': username,
+                             'TASK_COMPLETED_STATUS': str(todo['completed']),
+                             'TASK_TITLE': todo['title']})
+
