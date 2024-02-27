@@ -1,32 +1,17 @@
+#!/usr/bin/python3
+"""Script to export data in the CSV format"""
 import csv
-import requests
-from sys import argv
+import requests as r
+import sys
 
 if __name__ == "__main__":
-    if len(argv) != 2:
-        print("Usage: {} <employee_id>".format(argv[0]))
-        exit()
+    user_id = sys.argv[1]
+    url = "https://jsonplaceholder.typicode.com/"
+    usr = r.get(url + "users/{}".format(user_id)).json()
+    username = usr.get("username")
+    to_do = r.get(url + "todos", params={"userId": user_id}).json()
 
-    employee_id = argv[1]
-    url = "https://jsonplaceholder.typicode.com/users/{}/todos".format(employee_id)
-
-    response = requests.get(url)
-    todos = response.json()
-
-    user_info_url = "https://jsonplaceholder.typicode.com/users/{}".format(employee_id)
-    user_info_response = requests.get(user_info_url)
-    user_info = user_info_response.json()
-
-    employee_name = user_info['username']
-    filename = "{}.csv".format(employee_id)
-
-    with open(filename, 'w', newline='') as csvfile:
-        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        writer.writeheader()
-        for todo in todos:
-            writer.writerow({'USER_ID': employee_id,
-                             'USERNAME': employee_name,
-                             'TASK_COMPLETED_STATUS': str(todo['completed']),
-                             'TASK_TITLE': todo['title']})
+    with open("{}.csv".format(user_id), "w", newline="") as csvfile:
+        writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
+        [writer.writerow([user_id, username, elm.get("completed"),
+                          elm.get("title")]) for elm in to_do]
