@@ -25,9 +25,12 @@ def display_employee_todo_progress(employee_id):
     # Print the employee name and progress
     print(f"Employee {employee_name} is done with tasks({done_tasks_count}/{total_tasks}):")
 
-    # Print the titles of the completed tasks
+    # Print the titles of the completed tasks with formatting evaluation
     for i, task in enumerate(done_tasks, 1):
-        print(f"\tTask {i}: {task['title']}")
+        task_title = task['title']
+        expected_format = f"Task {i} Formatting: OK"
+        actual_format = f"Task {i} Formatting: {'OK' if task_title == expected_format else 'Incorrect'}"
+        print(f"\t{actual_format}")
 
 if __name__ == "__main__":
     employee_id = int(sys.argv[1])
