@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 import csv
 import requests
 import sys
@@ -34,11 +32,22 @@ def get_todo_progress(employee_id):
 
     print(f"Data exported to {filename}")
 
-    # Count the number of tasks in the CSV
+    # Verify number of tasks in CSV
     with open(filename, 'r') as csvfile:
         task_count = sum(1 for row in csv.reader(csvfile)) - 1  # Subtract 1 for the header row
-
     print(f"Number of tasks in CSV: {task_count}")
+
+    # Verify User ID and Username
+    with open(filename, 'r') as csvfile:
+        csv_reader = csv.DictReader(csvfile)
+        for row in csv_reader:
+            if row['USER_ID'] != str(employee_id) or row['USERNAME'] != employee_name:
+                print("User ID or Username mismatch in CSV")
+                break
+        else:
+            print("User ID and Username: OK")
+
+    # Additional formatting checks can be added here
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
