@@ -4,11 +4,10 @@ import csv
 import requests
 import sys
 
-
-def export_to_csv(employee_id):
+def get_todo_progress(employee_id):
     # Define API endpoints
     user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
     # Fetch user information
     user_response = requests.get(user_url)
@@ -16,8 +15,7 @@ def export_to_csv(employee_id):
         print("Error fetching user information")
         return
     user_data = user_response.json()
-    user_id = user_data['id']
-    username = user_data['username']
+    employee_name = user_data['name']
 
     # Fetch TODO list
     todos_response = requests.get(todos_url)
@@ -26,16 +24,20 @@ def export_to_csv(employee_id):
         return
     todos_data = todos_response.json()
 
-    # Write data to CSV file
-    csv_filename = f"{user_id}.csv"
-    with open(csv_filename, 'w', newline='') as csvfile:
-        fieldnames = ['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        writer.writeheader()
+    # Write data to CSV
+    filename = f"{employee_id}.csv"
+    with open(filename, 'w', newline='') as csvfile:
+        csv_writer = csv.writer(csvfile)
+        csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
         for todo in todos_data:
-            writer.writerow({'USER_ID': user_id,
-                             'USERNAME': username,
-                             'TASK_COMPLETED_STATUS': str(todo['completed']),
-                             'TASK_TITLE': todo['title']})
+            csv_writer.writerow([employee_id, employee_name, todo['completed'], todo['title']])
 
+    print(f"Data exported to {filename}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python3 script.py <employee_id>")
+        sys.exit(1)
+
+    employee_id = int(sys.argv[1])
+    get_todo_progress(employee_id)
