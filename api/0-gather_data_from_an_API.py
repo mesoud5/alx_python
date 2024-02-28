@@ -1,5 +1,6 @@
-import sys
 import requests
+import sys
+
 
 def get_employee_data(employee_id):
     employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
@@ -20,9 +21,13 @@ def display_employee_todo_progress(employee_id):
     done_tasks = [todo for todo in todos_data if todo["completed"]]
     total_tasks = len(todos_data)
     done_tasks_count = len(done_tasks)
+
+    # Print the employee name and progress
     print(f"Employee {employee_name} is done with tasks({done_tasks_count}/{total_tasks}):")
-    for task in done_tasks:
-        print(f"\t{task['title']}")
+
+    # Print the titles of the completed tasks
+    for i, task in enumerate(done_tasks, 1):
+        print(f"\tTask {i}: {task['title']}")
 
 if __name__ == "__main__":
     employee_id = int(sys.argv[1])
