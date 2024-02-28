@@ -1,43 +1,55 @@
-import csv
+#!/usr/bin/env python3
+"""
+Export to CSV
+"""
 import sys
+import csv
 import requests
 
-def get_todo_progress(employee_id):
-    user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
-    user_response = requests.get(user_url)
-    if user_response.status_code != 200:
-        print("Error fetching user information")
-        return
+def fetch_data(employee_id):
+    """
+    Fetches data from the given employee ID
+    """
+    base_url = 'https://jsonplaceholder.typicode.com'
+    user_response = requests.get(f'{base_url}/users/{employee_id}')
+    todos_response = requests.get(f'{base_url}/todos?userId={employee_id}')
+
     user_data = user_response.json()
-    username = user_data["username"]
-
-    todos_response = requests.get(todos_url)
-    if todos_response.status_code != 200:
-        print("Error fetching todo list")
-        return
     todos_data = todos_response.json()
 
-    with open(f"{employee_id}.csv", "w", newline="") as csvfile:
-        fieldnames = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    return user_data, todos_data
 
-        writer.writeheader()
+
+def export_to_csv(employee_id, user_data, todos_data):
+    """
+    Exports data to CSV format
+    """
+    filename = f"{employee_id}.csv"
+
+    with open(filename, mode='w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+
         for todo in todos_data:
-            writer.writerow(
-                {
-                    "USER_ID": employee_id,
-                    "USERNAME": username,
-                    "TASK_COMPLETED_STATUS": str(todo["completed"]),
-                    "TASK_TITLE": todo["title"],
-                }
-            )
+            writer.writerow([employee_id, user_data['username'], todo['completed'], todo['title']])
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 1-export_to_CSV.py <employee_id>")
+    print(f"Data exported to {filename}")
+
+
+def main():
+    """
+    Main function
+    """
+    if len(sys.argv) != 2 or not sys.argv[1].isdigit():
+        print("Usage: ./1-export_to_CSV.py <employee_id>")
         sys.exit(1)
 
-    employee_id = sys.argv[1]
-    get_todo_progress(employee_id)
+    employee_id = int(sys.argv[1])
+
+    user_data, todos_data = fetch_data(employee_id)
+    export_to_csv(employee_id, user_data, todos_data)
+
+
+if __name__ == "__main__":
+    main()
