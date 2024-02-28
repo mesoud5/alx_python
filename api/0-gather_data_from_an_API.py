@@ -6,7 +6,7 @@ import sys
 def get_todo_progress(employee_id):
     # Define API endpoints
     user_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
+    todos_url = f"https://jsonplaceholder.typicode.com/todos?userId={employee_id}"
 
     # Fetch user information
     user_response = requests.get(user_url)
