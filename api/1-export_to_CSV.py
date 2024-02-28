@@ -2,9 +2,10 @@
 """
 Export to CSV
 """
-import sys
 import csv
 import requests
+import sys
+
 
 
 def fetch_data(employee_id):

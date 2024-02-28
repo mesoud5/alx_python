@@ -2,9 +2,9 @@
 """
 Export to JSON
 """
-import sys
 import json
 import requests
+import sys
 
 
 def fetch_data(employee_id):
