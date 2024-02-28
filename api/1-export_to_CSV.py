@@ -34,4 +34,16 @@ def get_todo_progress(employee_id):
 
     print(f"Data exported to {filename}")
 
+    # Count the number of tasks in the CSV
+    with open(filename, 'r') as csvfile:
+        task_count = sum(1 for row in csv.reader(csvfile)) - 1  # Subtract 1 for the header row
 
+    print(f"Number of tasks in CSV: {task_count}")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python3 script.py <employee_id>")
+        sys.exit(1)
+
+    employee_id = int(sys.argv[1])
+    get_todo_progress(employee_id)
