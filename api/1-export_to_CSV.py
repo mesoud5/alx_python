@@ -34,10 +34,4 @@ def get_todo_progress(employee_id):
 
     print(f"Data exported to {filename}")
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 script.py <employee_id>")
-        sys.exit(1)
 
-    employee_id = int(sys.argv[1])
-    get_todo_progress(employee_id)
